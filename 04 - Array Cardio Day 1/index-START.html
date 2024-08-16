@@ -99,6 +99,7 @@
 
       const totalYears = inventors.reduce((acc, curr) => {
         return acc + (curr.passed - curr.year);
+        //acc is set to zero
       }, 0);
       console.table(totalYears);
 
@@ -121,8 +122,11 @@
       // Sort the people alphabetically by last name
 
       const lastNames = people.sort((current, next) => {
+        // Use destructuring to assign separate variables to the array returned by .split(`, `)
         const [currentLast, currentFirst] = current.split(`, `);
         const [nextLast, nextFirst] = next.split(`, `);
+
+        //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
         return currentLast > nextLast ? 1 : -1;
       });
 
@@ -149,11 +153,18 @@
 
       const transportation = data.reduce((obj, curr) => {
         // Dot notation only allows static keys while bracket notation allows dynamic keys
+
+        // Create object property if it doesn't already exist
         if (!obj[curr]) {
+          // Initialize to zero
           obj[curr] = 0;
         }
+
+        // Increment instances of each item
         obj[curr]++;
         return obj;
+
+        // Set accumulator to empty object
       }, {});
 
       console.log(transportation);
